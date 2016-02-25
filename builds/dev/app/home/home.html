@@ -2,16 +2,15 @@
   <div class="row">
     <div class="col-lg-8 col-md-offset-2">
       <div class="input-group">
-        <input ng-model="hc.newTask.cost"type="number" class="form-control" placeholder="Введите стоимость часа" required>
-        <input ng-model="hc.newTask.name" type="text" class="form-control" placeholder="Введите название задачи">
+        <input class="form-control" ng-model="hc.newTask.cost" placeholder="Введите стоимость часа" required type="number">
+        <input class="form-control" ng-model="hc.newTask.name" placeholder="Введите название задачи" type="text">
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button" ng-click="hc.start()">{{ hc.startBtnText }}</button>
+          <button class="btn btn-default" ng-click="hc.start()" type="button">{{ hc.startBtnText }}</button>
           <button class="btn btn-default" ng-click="hc.reset()">Сохранить</button>
         </span>
       </div>
     </div>
   </div>
-
 
 </div>
 <div class="col-lg-8 col-md-offset-2">
@@ -40,10 +39,14 @@
     <tbody>
       <tr ng-repeat="task in hc.tasks track by $index">
         <td>{{$index+1}}</td>
-        <td><input type="text" class="task-inner" placeholder={{task.name}}></td>
+        <td><input class="task-inner" ng-click="hc.editTask(task)" placeholder={{task.name}} type="text"></td>
         <td>{{task.time | date:'HH:mm:ss':'+0000' }}</td>
         <td>{{ task.time/3600000 * task.cost | currency:"USD$ "}}</td>
+        <td>
+          <button class="btn btn-default" ng-click="hc.deletTask(task)">Удалить</button>
+        </td>
       </tr>
+      <input ng-show="hc.showEditingInput" ng-model="hc.newTaskName" ng-blur="hc.doneEditing()">
     </tbody>
   </table>
 </div>
