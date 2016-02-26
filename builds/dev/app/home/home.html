@@ -1,18 +1,22 @@
 <div class="jumbotron">
   <div class="row">
-    <div class="col-lg-8 col-md-offset-2">
-      <div class="input-group">
-        <input class="form-control" ng-model="hc.newTask.cost" placeholder="Введите стоимость часа" required type="number">
-        <input class="form-control" ng-model="hc.newTask.name" placeholder="Введите название задачи" type="text">
-        <span class="input-group-btn">
-          <button class="btn btn-default" ng-click="hc.start()" type="button">{{ hc.startBtnText }}</button>
-          <button class="btn btn-default" ng-click="hc.reset()">Сохранить</button>
-        </span>
+  <div class="col-lg-8 col-md-offset-2">
+    <div class="input-group">
+      <input class="form-control" ng-model="hc.newTask.name" placeholder="Введите название задачи" type="text">
+      <span class="input-group-addon">$</span>
+      <input class="form-control" ng-model="hc.newTask.cost" placeholder="Введите стоимость часа" required type="number">
+      <div class="input-group-btn">
+        <button class="btn btn-default" ng-click="hc.start()" type="button">{{ hc.startBtnText }}</button>
+        <button class="btn btn-default" ng-click="hc.reset()">Сохранить</button>
       </div>
     </div>
   </div>
+  </div>
 
 </div>
+
+<div class="row">
+
 <div class="col-lg-8 col-md-offset-2">
   <p>{{taskName}}</p>
   <p>{{timeCost}}</p>
@@ -33,6 +37,8 @@
         <th>
           Стоимость
         </th>
+        <th>
+        </th>
       </tr>
     </thead>
 
@@ -41,15 +47,17 @@
         <td>{{$index+1}}</td>
         <td class="task-elem">
           <input  ng-readonly="true" class="task-inner" ng-dblclick="hc.editTask(task, $index)" placeholder={{task.name}} type="text">
-          <input class="edit-inner" autofocus ng-hide="hc.hideEditingInput" ng-if="hc.showEditingInput($index)" ng-model="hc.newTaskName"
-        ng-blur="hc.doneEditing()">
+          <form class="edit-inner" ng-hide="hc.hideEditingInput" ng-if="hc.showEditingInput($index)" ng-submit="hc.doneEditing()">
+            <input autofocus class="edit-inner" ng-hide="hc.hideEditingInput" ng-if="hc.showEditingInput($index)" ng-model="hc.newTaskName">
+          </form>
         </td>
         <td>{{task.time | date:'HH:mm:ss':'+0000' }}</td>
         <td>{{ task.time/3600000 * task.cost | currency:"USD$ "}}</td>
         <td>
-          <button class="btn btn-default" ng-click="hc.deletTask(task)">Удалить</button>
+          <button class="btn btn-default pull-right" ng-click="hc.deletTask(task)">Удалить</button>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
 </div>

@@ -59,7 +59,6 @@
             fullname: _user.name + ' ' + _user.surname
           };
           $rootScope.currentID = authData.uid;
-          console.log($rootScope.currentID);
 
         })
       }else{// Logged out

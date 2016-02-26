@@ -7,12 +7,12 @@
       'ui.router',
       'ui.bootstrap',
       'time.home',
-      'time.tasks',
+      'time.statistics',
       'time.users',
       'time.registration',
       'time.dbc',
     ])
-    .constant('FURL', 'https://timedem.firebaseio.com/')
+    .constant('FURL', 'https:ç//timedem.firebaseio.com/')
     .controller('MainCtrl', MainController)
     .run(MainRun)
     .config(MainConfig);

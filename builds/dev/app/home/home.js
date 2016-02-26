@@ -116,6 +116,12 @@
     s.saveTask = function() {
       s.newTask.time = s.timer;
       tasks.addNewTask(s.newTask);
+      s.newTask = {
+        name: null,
+        time: null,
+        cost: null
+      };
+      s.timer = null;
     }
     s.deletTask = function(_d) {
       tasks.deletTask(_d)

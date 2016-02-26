@@ -2,5 +2,5 @@
 *.css.map
 node_modules/
 bower_components/
-/builds/dev/app.js
-/builds/dev/libs.js
+builds/dev/app.js
+builds/dev/libs.js
