@@ -39,14 +39,17 @@
     <tbody>
       <tr ng-repeat="task in hc.tasks track by $index">
         <td>{{$index+1}}</td>
-        <td><input class="task-inner" ng-click="hc.editTask(task)" placeholder={{task.name}} type="text"></td>
+        <td class="task-elem">
+          <input  ng-readonly="true" class="task-inner" ng-dblclick="hc.editTask(task, $index)" placeholder={{task.name}} type="text">
+          <input class="edit-inner" autofocus ng-hide="hc.hideEditingInput" ng-if="hc.showEditingInput($index)" ng-model="hc.newTaskName"
+        ng-blur="hc.doneEditing()">
+        </td>
         <td>{{task.time | date:'HH:mm:ss':'+0000' }}</td>
         <td>{{ task.time/3600000 * task.cost | currency:"USD$ "}}</td>
         <td>
           <button class="btn btn-default" ng-click="hc.deletTask(task)">Удалить</button>
         </td>
       </tr>
-      <input ng-show="hc.showEditingInput" ng-model="hc.newTaskName" ng-blur="hc.doneEditing()">
     </tbody>
   </table>
 </div>

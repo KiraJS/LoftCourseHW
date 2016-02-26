@@ -75,9 +75,10 @@
       time: null,
       cost: null
     };
-    s.showEditingInput = false;
     s.newTaskName = null;
     s.editTASK = null;
+    s.editIndex = null;
+    s.hideEditingInput = false;
 
     var startDate, curDate, curTimerStart, timerVal, timer = null;
 
@@ -119,18 +120,31 @@
     s.deletTask = function(_d) {
       tasks.deletTask(_d)
     }
-    s.editTask = function(_task) {
-      s.showEditingInput = true;
+    s.editTask = function(_task, _index) {
       s.editTASK = _task;
-      console.log("editTaskFunction", s.editTASK)
+      s.editIndex = _index;
+      s.hideEditingInput = false;
+
+
+      console.log("editTaskFunction", s.editTASK, _index)
 
     }
     s.doneEditing = function() {
-      s.showEditingInput = false;
       console.log("doneEditingFunction", s.newTaskName)
       tasks.saveNewName(s.editTASK, s.newTaskName);
       s.newTaskName = null;
       s.editTASK = null;
+      s.hideEditingInput = true;
+
+    }
+    s.showEditingInput = function(_index){
+      if (s.editIndex == _index){
+        return true;
+      }
+      else {
+        return false;
+      }
+
     }
 
 
