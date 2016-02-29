@@ -28,7 +28,7 @@
    * Tasks Controller
    */
   // @ngInject
-  function statisticsController($log) {
+  function statisticsController($log, $rootScope) {
     $log.debug('statisticsController');
     var s = this;
 
@@ -39,11 +39,11 @@
    */
   // @ngInject
   function TasksConfig($stateProvider){
-    console.log('Tasks Config');
+    console.log('Statistics Config');
     $stateProvider
       .state('statistics', {
         url: '/statistics',
-        templateUrl: 'app/statistic/statistics.html',
+        templateUrl: 'app/statistics/statistics.html',
         controller: 'statisticsCtrl',
         authenticate: false,
         controllerAs: 'sc',

@@ -25,9 +25,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th>
-          №
-        </th>
+
         <th>
           Название
         </th>
@@ -43,8 +41,7 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="task in hc.tasks track by $index">
-        <td>{{$index+1}}</td>
+      <tr ng-repeat="task in hc.tasks | orderBy:'$index':true">
         <td class="task-elem">
           <input  ng-readonly="true" class="task-inner" ng-dblclick="hc.editTask(task, $index)" placeholder={{task.name}} type="text">
           <form class="edit-inner" ng-hide="hc.hideEditingInput" ng-if="hc.showEditingInput($index)" ng-submit="hc.doneEditing()">
