@@ -11,7 +11,7 @@
 
 
   // @ngInject
-  function RegistrationController(registration, $rootScope)
+  function RegistrationController(registration, $rootScope, $state)
   {
     var s = this;
     $rootScope.currentPage = 'registration';
@@ -23,6 +23,7 @@
 
     s.signin = function(){
       registration.signin(s.signinUser).then(function(){
+         $state.transitionTo('home');
       });
     }
 
@@ -35,7 +36,7 @@
 
     s.signup = function(){
     registration.signup(s.signupUser).then(function(){
-
+      $state.transitionTo('home');
       });
     }
 
