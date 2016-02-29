@@ -1,15 +1,15 @@
 <div class="jumbotron">
   <div class="row">
   <div class="col-lg-8 col-md-offset-2">
-    <div class="input-group">
-      <input class="form-control" ng-model="hc.newTask.name" placeholder="Введите название задачи" type="text">
+    <form class="input-group" ng-submit="hc.reset()">
+      <input class="form-control" ng-model="hc.newTask.name" placeholder="Введите название задачи" required type="text">
       <span class="input-group-addon">$</span>
       <input class="form-control" ng-model="hc.newTask.cost" placeholder="Введите стоимость часа" required type="number">
       <div class="input-group-btn">
-        <button class="btn btn-default" ng-click="hc.start()" type="button">{{ hc.startBtnText }}</button>
-        <button class="btn btn-default" ng-click="hc.reset()">Сохранить</button>
+        <button class="timer-button btn btn-default" ng-click="hc.start()" type="button">{{ hc.startBtnText }}</button>
+        <button class="timer-button btn btn-default" type="submit">Сохранить</button>
       </div>
-    </div>
+    </form>
   </div>
   </div>
 
@@ -18,11 +18,8 @@
 <div class="row">
 
 <div class="col-lg-8 col-md-offset-2">
-  <p>{{taskName}}</p>
-  <p>{{timeCost}}</p>
-
-  <p>{{ hc.timer | date:'HH:mm:ss':'+0000' }}</p>
-  <table class="table">
+  <p class="timer">{{ hc.timer | date:'HH:mm:ss':'+0000' }}</p>
+  <table class="table table-hover">
     <thead>
       <tr>
 
@@ -36,7 +33,7 @@
           Стоимость
         </th>
         <th>
-        </th>
+        </th >
       </tr>
     </thead>
 
@@ -50,8 +47,8 @@
         </td>
         <td>{{task.time | date:'HH:mm:ss':'+0000' }}</td>
         <td>{{ task.time/3600000 * task.cost | currency:"USD$ "}}</td>
-        <td>
-          <button class="btn btn-default pull-right" ng-click="hc.deletTask(task)">Удалить</button>
+        <td class="button-inner">
+          <button class="delet-task btn btn-default pull-right" ng-click="hc.deletTask(task)">Удалить</button>
         </td>
       </tr>
     </tbody>

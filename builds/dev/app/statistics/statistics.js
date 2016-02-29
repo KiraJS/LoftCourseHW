@@ -45,7 +45,7 @@
         url: '/statistics',
         templateUrl: 'app/statistics/statistics.html',
         controller: 'statisticsCtrl',
-        authenticate: false,
+        authenticate: true,
         controllerAs: 'sc',
       });
   }

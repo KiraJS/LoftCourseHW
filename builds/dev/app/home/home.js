@@ -37,9 +37,9 @@
     }
     o.addNewTask = function(_newTask) {
       tasks.$add({
-        name: _newTask.name || "(Без названия)",
-        time: _newTask.time || "(Не определено)",
-        cost: _newTask.cost || "(Не определена)"
+        name: _newTask.name,
+        time: _newTask.time,
+        cost: _newTask.cost
       })
     }
     o.deletTask = function(_task) {
@@ -67,7 +67,7 @@
     $log.debug('HomeController');
     var s = this;
 
-    s.timer = null;
+    s.timer = "00:00:00";
 
     s.tasks = tasks.getAllTasks();
     s.newTask = {
@@ -121,7 +121,7 @@
         time: null,
         cost: null
       };
-      s.timer = null;
+      s.timer = "00:00:00";
     }
     s.deletTask = function(_d) {
       tasks.deletTask(_d)
@@ -166,7 +166,7 @@
         url: '/home',
         templateUrl: 'app/home/home.html',
         controller: 'HomeCtrl',
-        authenticate: false,
+        authenticate: true,
         controllerAs: 'hc'
       });
   }
